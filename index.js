@@ -14,12 +14,12 @@ app.post('/contractTransaction', async function (request, response) {
     var data = request.body;
 
     consoleLogger.time('Call for contract: ' + data.contract.address + ' transaction method: ' + data.method + ' wallet: ' + data.wallet.address + ' params: (' + data.additional + ')');
-    response.json(await contract.transaction(data.contract, data.method, data.wallet, data.additional));
+    await contract.transaction(data.contract, data.method, data.wallet, data.additional, response);
 });
 app.post('/contractMethod', async function (request, response) {
     var data = request.body;
 
-    consoleLogger.time('Call for contract: ' + data.contract.address + ' method: ' + data.method+ ' wallet: ' + data.wallet.address + ' params: (' + data.additional + ')');
+    consoleLogger.time('Call for contract: ' + data.contract.address + ' method: ' + data.method + ' wallet: ' + data.wallet.address + ' params: (' + data.additional + ')');
     response.json(await contract.method(data.contract, data.method, data.wallet, data.additional));
 });
 app.post('/getTransaction', async function (request, response) {
